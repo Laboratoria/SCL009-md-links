@@ -1,4 +1,16 @@
 {
   "name": "md-links",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "dependencies": {
+    "eslint-plugin-jest": "^22.6.4",
+    "filehound": "^1.17.0",
+    "jest": "^24.8.0",
+    "node-fetch": "^2.6.0"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "eslint": "eslint --ext .js src/ test/",
+    "htmlhint": "htmlhint src/*.html",
+    "pretest": "npm run eslint"
+  }
 }
