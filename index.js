@@ -153,6 +153,7 @@ const mdLinks = path => {
                 );
               });
 
+              //todas las promesas deben cumplirse
               Promise.all(promises)
                 .then(allData => { // aca se resolvió readFile pero se agrega un then antes tranformando la data
                   resolve(allData.reduce((a, b) => a.concat(b))); // a = [1, 2]; b = [2,3]; c = [a, b]; c.reduce((x, y) => x.concat(y))
