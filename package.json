@@ -1,12 +1,12 @@
 {
-  "name": "md-links",
+  "name": "@jocecasteletti/md-links",
   "version": "0.1.0",
   "description": "Md links",
   "scripts": {
-    "demo": "node src/md-links",
     "test": "jest --coverage",
     "eslint": "eslint --ext .js src/ test/",
-    "pretest": "npm run eslint"
+    "pretest": "npm run eslint",
+    "deploy": "gh pages -g src/"
   },
   "license": "ISC",
   "main": "md-links.js",
@@ -23,10 +23,11 @@
     "filehound": "^1.17.0",
     "jest": "^24.8.0",
     "marked": "^0.6.2",
-    "yargs": "^13.3.0"
+    "yargs": "^13.3.0",
+    "gh-pages": "^2.0.1"
   },
   "author": "Jocelyn Casteletti",
   "bin": {
-    "md-links": "index.js"
+    "md-links": "src/md-links.js"
   }
 }
