@@ -85,6 +85,23 @@ const listDirectoryFiles = path => {
 };
 
 
+
+//funcion para crear la data de requerimiento en readme
+//en marked obtenemos , title, href y text
+//pero el requerimiento pide href ,text y file(ruta)
+//map() crea un nuevo array con los resultados de la llamada a la función indicada 
+const createData = (path, data) => {
+  const links = getLinks(data);
+
+  return links.map(link => {
+    return {
+      href: link.href,
+      text: link.text,
+      file: path
+    };
+  });
+};
+
 // const readFile = (fileName, type) => {
 //   return new Promise((resolve, reject) => {
 //     // Read a file
