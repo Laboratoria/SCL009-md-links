@@ -7,6 +7,25 @@ const pathToAbsolute = path => {
   return resolve(path);
 };
 
+
+
+
+
+
+
+const readFile = path => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, 'utf-8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve(data);
+    });
+  });
+};
+
 // const readFile = (fileName, type) => {
 //   return new Promise((resolve, reject) => {
 //     // Read a file
