@@ -26,6 +26,30 @@ const checkValidPath = path => {
   });
 }
 
+//funcion para obtener los links de un archivos con extensión md 
+//usando marked y extrayendo el href, título y el texto
+const getLinks = document => {
+  const links = [];
+
+  const renderer = new marked.Renderer();
+
+  renderer.link = (href, title, text) => {
+    links.push({
+      href,
+      title,
+      text
+    })
+  }
+
+  marked(document, {renderer});
+
+  return links;
+}
+
+const isLinkValid = link => {
+
+}
+
 
 const readFile = path => {
   return new Promise((resolve, reject) => {
