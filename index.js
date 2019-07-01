@@ -1,4 +1,11 @@
+const fs = require('fs');
+const resolve = require('path').resolve;
+const marked = require('marked');
+const Filehound = require('filehound');
 
+const pathToAbsolute = path => {
+  return resolve(path);
+};
 
 // const readFile = (fileName, type) => {
 //   return new Promise((resolve, reject) => {
