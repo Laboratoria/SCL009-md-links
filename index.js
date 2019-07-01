@@ -40,6 +40,27 @@ const readFile = path => {
   });
 };
 
+//funcion que liste en base a una ruta una lista de los archivos
+const listDirectoryFiles = path => {
+  return new Promise((resolve, reject) => {
+    const filehound = Filehound.create();
+
+    filehound
+      .ext('md')
+      .depth(0)
+      .paths(path)
+      .find((err, files) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+    
+        resolve(files);
+      });
+  });
+};
+
+
 // const readFile = (fileName, type) => {
 //   return new Promise((resolve, reject) => {
 //     // Read a file
