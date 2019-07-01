@@ -2,10 +2,31 @@
   "name": "md-links",
   "version": "0.1.0",
   "description": "Md links",
-  "dependecies": {},
+  "scripts": {
+    "demo": "node src/md-links",
+    "test": "jest --coverage",
+    "eslint": "eslint --ext .js src/ test/",
+    "pretest": "npm run eslint"
+  },
+  "license": "ISC",
+  "main": "md-links.js",
+  "keywords": [
+    "Markdown",
+    "node",
+    "folder"
+  ],
+  "repository": "https://github.com/JoceCasteletti/SCL009-md-links",
   "dependencies": {
+    "chalk": "^2.4.2",
+    "eslint": "^6.0.1",
+    "eslint-plugin-jest": "^22.7.1",
     "filehound": "^1.17.0",
+    "jest": "^24.8.0",
     "marked": "^0.6.2",
-    "save": "^2.4.0"
+    "yargs": "^13.3.0"
+  },
+  "author": "Jocelyn Casteletti",
+  "bin": {
+    "md-links": "index.js"
   }
 }

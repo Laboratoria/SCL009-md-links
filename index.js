@@ -1,47 +1,79 @@
-//module.exports = () => {
-// ...
-//};
 
-//llamando documentación de node
-const fs = require('fs');
-const marked = require('marked');
 
-//ruta y callback
-//utf lenguaje humano porque entrega solo números
-//Se lee ruta del arvhivo md
+// const readFile = (fileName, type) => {
+//   return new Promise((resolve, reject) => {
+//     // Read a file
+//     fs.readFile(fileName, type ,(err, data) => {
+//       if (err){
+//       reject(err);
+//       } else {
+//         resolve(data.toString());
+//       }
+//     });
+//   });
+//  };
 
-//fs.readFile('./prueba.md', 'utf8',(err, data) => {
-//if (err) {
-//throw err;
-//}
-//console.log(data);
-//});
 
-const links = (path) => {
-  fs.readFile(path, 'utf8', (err, data) => {
-    if (err) {
-      throw err;
-    }
-    //new crear nueva instancia 
-    //marked libreria
-    //renderer metodo
+//  readFile("prueba.txt", "utf-8")
+//   .then(resolve => {
+//     console.log("Archivo:" , resolve);
+//   })
+//   .catch(err => {
+//     console.log(err)
+//   })
 
-    let links = [];
-    const renderer = new marked.Renderer();
-    //.link es un metodo
-    renderer.link = function (href, title, text) {
-      links.push(
-        {
-          href: href,
-          text: text,
-          file: path
-        }
-      )
-    }
-    marked(data, { renderer: renderer });
-    console.log(links)
+// //llamando documentación de node
+// const fs = require('fs');
+// //const marked = require('marked');
+// const FileHound = require('filehound');
 
-  })
-}
+// //ruta y callback
+// //utf lenguaje humano porque entrega solo números
+// //Se lee ruta del arvhivo md
 
-console.log(links('./prueba.md'));
+// //fs.readFile('./prueba.md', 'utf8',(err, data) => {
+// //if (err) {
+// //throw err;
+// //}
+// //console.log(data);
+// //});
+
+
+ 
+// const files = FileHound.create()
+//   .paths('/some/dir')
+//   .ext('json')
+//   .find();
+ 
+// files.then(console.log);
+
+
+
+// // const links = (path) => {
+// //   fs.readFile(path, 'utf8', (err, data) => {
+// //     if (err) {
+// //       throw err;
+// //     }
+// //     //new crear nueva instancia 
+// //     //marked libreria
+// //     //renderer metodo
+
+// //     let links = [];
+// //     const renderer = new marked.Renderer();
+// //     //.link es un metodo
+// //     renderer.link = function (href, title, text) {
+// //       links.push(
+// //         {
+// //           href: href,
+// //           text: text,
+// //           file: path
+// //         }
+// //       )
+// //     }
+// //     marked(data, { renderer: renderer });
+// //     console.log(links)
+
+// //   })
+// // }
+
+// // console.log(links('./prueba.md'));
