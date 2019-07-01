@@ -19,12 +19,9 @@ algunas estadísticas.
 
  ## Cómo se instala?
 
+Para usar esta biblioteca instala:
 
-
-
-npm install ...........
-
-
+npm install @jocecasteletti/md-links --save
 
 
 ## Comando línea de interfaz
