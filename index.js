@@ -3,6 +3,7 @@ const resolve = require('path').resolve;
 const marked = require('marked');
 const Filehound = require('filehound');
 
+
 const pathToAbsolute = path => {
   return resolve(path);
 };
@@ -31,6 +32,7 @@ const checkValidPath = path => {
 const getLinks = document => {
   const links = [];
 
+  //new (se crea nueva instancia)
   const renderer = new marked.Renderer();
 
   renderer.link = (href, title, text) => {
@@ -46,9 +48,9 @@ const getLinks = document => {
   return links;
 }
 
-const isLinkValid = link => {
+//const isLinkValid = link => {
 
-}
+//}
 
 
 const readFile = path => {
@@ -69,6 +71,7 @@ const listDirectoryFiles = path => {
   return new Promise((resolve, reject) => {
     const filehound = Filehound.create();
 
+    //no se valida directorio porque la extension es md en filehound
     filehound
       .ext('md')
       .depth(0)
@@ -107,6 +110,70 @@ const createData = (path, data) => {
 const isValidExtension = (path) => {
   return path.toLowerCase().endsWith('.md');
 };
+
+
+
+
+const mdLinks = path => {
+  return new Promise((resolve, reject) => {
+    const absolutePath = pathToAbsolute(path); 
+
+    checkValidPath(absolutePath)
+      .then(type => {
+        if (type === 'FILE') {
+          if (!isValidExtension(absolutePath)) {
+            reject(new Error('La extensión de archivo no es válida'));
+            return;
+          }
+
+          readFile(absolutePath)
+            .then(data => {
+              resolve(createData(absolutePath, data));
+            }).catch(err => {
+              reject(err);
+              return;
+            });
+        }
+  
+        //no se valida directorio(isValidExtension)porque la extension es md en filehound
+        if (type === 'DIRECTORY') {
+          listDirectoryFiles(absolutePath) // Se lista directorio (promesa)
+            .then(files => {  // Se resuelve promesa, se entrega lista de rutas a archivo
+              const promises = [];
+
+              files.forEach(file => { // por cada ruta de archivo
+                promises.push(  // se crea promesa por cada ruta y se añade al arreglo
+                  readFile(file) // se lee ruta y se obtiene el contenido e archivo (promesa)
+                    .then(data => { // se resolvió bien y obtuvo el contenido del archivo (es string)
+                      return createData(file, data); // al arreglo de promesas se le entrega el objeto deseado por readme, no la data
+                    }).catch(err => {
+                      reject(err);
+                      return;
+                    })
+                );
+              });
+
+              Promise.all(promises)
+                .then(allData => { // aca se resolvió readFile pero se agrega un then antes tranformando la data
+                  resolve(allData.reduce((a, b) => a.concat(b))); // a = [1, 2]; b = [2,3]; c = [a, b]; c.reduce((x, y) => x.concat(y))
+                }).catch(err => {
+                  reject(err);
+                  return;
+                });
+            }).catch(err => {
+              reject(err);
+            });
+        }
+      }).catch(err => {
+        reject(err);
+      });
+  });
+}
+
+module.exports = mdLinks;
+
+
+
 
 
 // const readFile = (fileName, type) => {
