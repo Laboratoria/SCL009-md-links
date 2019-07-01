@@ -102,6 +102,13 @@ const createData = (path, data) => {
   });
 };
 
+
+//valida la extensión de archivo (md)
+const isValidExtension = (path) => {
+  return path.toLowerCase().endsWith('.md');
+};
+
+
 // const readFile = (fileName, type) => {
 //   return new Promise((resolve, reject) => {
 //     // Read a file
