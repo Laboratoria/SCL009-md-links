@@ -1,13 +1,30 @@
 const fs = require('fs');
 const resolve = require('path').resolve;
-//const marked = require('marked');
-//const Filehound = require('filehound');
+const marked = require('marked');
+const Filehound = require('filehound');
 
 const pathToAbsolute = path => {
   return resolve(path);
 };
 
+const checkValidPath = path => {
+  return new Promise((resolve, reject) => {
+    fs.stat(path, (err, stats) => {
+      if (err) {
+        reject(err);
+        return;
+      }
 
+      if (stats.isFile()) {
+        resolve('FILE');
+      } else if (stats.isDirectory()) {
+        resolve('DIRECTORY');
+      } else {
+        reject(new Error('INVALID_PATH'));
+      }
+    });
+  });
+}
 
 
 const readFile = path => {
