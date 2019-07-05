@@ -48,9 +48,18 @@ const getLinks = document => {
   return links;
 }
 
-//const isLinkValid = link => {
+//validar que los links existan
+// const isLinkValid = link => {
+//   return new promises((resolve, reject) => {
+//     if(err) {
+//       reject(err)
+//       return;
+//     }
+//       resolve(link);
+      
+//   })
 
-//}
+// }
 
 
 const readFile = path => {
